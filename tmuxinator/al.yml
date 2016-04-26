@@ -2,11 +2,15 @@ name: al
 root: ~/Documents/AL/al-websystem/
 windows:
   - Development:
+      layout: main-horizon
       panes:
         - editor:
             - vimf
         - mysql:
+            - docker-machine start
+            - eval `docker-machine env`
             - cd aldb
         - workshell:
-            - bash
+            - pwd
+
 
