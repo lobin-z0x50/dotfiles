@@ -1,0 +1,8 @@
+lightline.vim
+neobundle.vim
+neocomplcache
+neomru.vim
+unite.vim
+vim-fugitive
+vimfiler
+vimfiler.vim

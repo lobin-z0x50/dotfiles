@@ -1,0 +1,12 @@
+name: al
+root: ~/Documents/AL/al-websystem/
+windows:
+  - Development:
+      panes:
+        - editor:
+            - vimf
+        - mysql:
+            - cd aldb
+        - workshell:
+            - bash
+

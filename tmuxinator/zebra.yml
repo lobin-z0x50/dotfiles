@@ -1,0 +1,13 @@
+name: zebra
+root: ~/Documents/workspace_mars/ZEBRA_SWEB/
+windows:
+  - Activator:
+      layout: main-horizon
+      panes:
+        - errorlog:
+            - tail -f logs/error.log
+        - accessdb:
+            - tail -f logs/access.log
+        - activator:
+            - JAVA_OPTS=-Dconfig.file=./conf/cmp01_dev.conf activator -jvm-debug 9999 run
+

@@ -1,0 +1,14 @@
+name: al
+root: ~/Documents/AL/al-websystem/
+windows:
+  - Development:
+      layout: main-horizon
+      panes:
+        - editor:
+            - sleep 1
+            - vimf
+        - db:
+            - cd aldb
+        - workshell:
+            - sleep 2; uname -a; date; pwd
+

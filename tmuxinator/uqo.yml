@@ -1,0 +1,24 @@
+name: uqo
+root: ~/Documents/UQO/src/uqo-kpi/
+windows:
+  - Development:
+      layout: main-horizon
+      panes:
+        - editor:
+            - sleep 1
+            - vimf
+        - db:
+            - cd db
+            - mysql.server start
+            - mysql -u kpi_user -p-kpi_user- kpidb
+        - workshell:
+            - sleep 2; uname -a; date; pwd
+  - WebServer:
+      layout: main-horizon
+      panes:
+        - builtin:
+            - cd cakeapp/
+            - composer install
+            - cd app/webroot
+            - KPI_DEBUG_LEVEL=2 php -S localhost:8089 index.php
+

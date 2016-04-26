@@ -1,0 +1,23 @@
+name: default
+root: ~/
+windows:
+  - Development:
+      panes:
+        - editor:
+            - cd ~/Documents/KPI_1/src/uqo-kpi/cakeapp
+            - vim .
+        - mysql:
+            - cd ~/Documents/KPI_1/src/uqo-kpi/db
+            - mysql -u kpi_user -p-kpi_user- kpidb
+        - workshell:
+            - cd ~/Documents/KPI_1/src/uqo-kpi/cakeapp
+            - bash
+  - WebServer:
+      panes:
+        - builtin:
+            - cd ~/Documents/KPI_1/src/uqo-kpi/cakeapp/app/webroot
+            - php -S localhost:8089 index.php
+        - workshell:
+            - cd ~/Documents/KPI_1/src/uqo-kpi/cakeapp/app/webroot
+            - bash
+
