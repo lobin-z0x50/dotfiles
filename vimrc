@@ -8,7 +8,7 @@ scriptencoding cutf-8
 set t_Co=256
 
 if has('nvim')
-	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+	"let $NVIM_TUI_ENABLE_TRUE_COLOR=1  "iTermなどでは256色しか使えないためおかしくなる
 	set runtimepath+=~/.config/nvim/.vim/
 endif
 
@@ -277,7 +277,15 @@ if &t_Co > 2 || has('gui_running')
 endif
 " 色テーマ設定
 " gvimの色テーマは.gvimrcで指定する
+
+" --- railscasts ---
 colorscheme railscasts
+
+" --- hybrid ---
+"set background=dark
+"let g:hybrid_custom_term_colors = 1
+"let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+"colorscheme hybrid
 
 """"""""""""""""""""""""""""""
 " ステータスラインに文字コード等表示
@@ -460,5 +468,5 @@ augroup END
 "----------------------------------------
 " 一時設定
 "----------------------------------------
-set cursorline
+"set cursorline
 
