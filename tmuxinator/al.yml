@@ -6,10 +6,8 @@ windows:
       panes:
         - editor:
             - vimf
-        - mysql:
-            - docker-machine start
-            - eval `docker-machine env`
-            - cd aldb
+        - docker:
+            - cd bin
         - workshell:
             - pwd
 
