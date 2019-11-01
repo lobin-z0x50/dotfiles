@@ -45,10 +45,9 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
-" vimprocだけは最初にインストールしてほしい
-if dein#check_install(['vimproc'])
-  call dein#install(['vimproc'])
-endif
+filetype plugin indent on
+syntax enable
+
 " その他インストールしていないものはこちらに入れる
 if dein#check_install()
   call dein#install()
@@ -56,114 +55,6 @@ endif
 
 " }}} dein settings
 
-
-" call neobundle#begin(expand('~/.vim/bundle'))
-" 
-" " neobundle.vim自信をneobundle.vimで管理する
-" NeoBundleFetch 'Shougo/neobundle.vim'
-" 
-" "=================================================
-" " ここにインストールしたいプラグインの設定を書く
-" "   :help  neobundle-examples
-" "=================================================
-" 
-" " ---------- VimFiler ----------
-" NeoBundle 'Shougo/vimfiler.vim'
-" 
-" " VimFilerを :e . で起動させる
-" let g:vimfiler_as_default_explorer = 1
-" " セーフモードを解除
-" let g:vimfiler_safe_mode_by_default = 0
-" 
-" " ---------- Unite ----------
-" NeoBundle 'Shougo/unite.vim', {'lazy': 1,
-" 	\ 'depends': ['Shougo/vimfiler'] ,
-" 	\ 'autoload': {
-" 	\	'command': [{'name': 'Unite',
-" 	\		'complete': 'customlist,unite#complete_source'}
-" 	\	]}
-" 	\ }
-" 
-" NeoBundle 'Shougo/neomru.vim'
-" let g:unite_source_history_yank_enable =1
-" let g:unite_source_file_mru_limit = 200
-" nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-" nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-" nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-" nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-" nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-" 
-" 
-" " ---------- neocomplete, neocomplecache ----------
-" if has('lua')
-" 	NeoBundle 'Shougo/neocomplete', {
-" 		\ 'autoload': {
-" 		\   'insert': 1,
-" 		\ }}
-" else
-" 	NeoBundle 'Shougo/neocomplcache', { 'lazy': 1,
-" 		\ 'autoload': {
-" 		\   'insert': 1,
-" 		\ }}
-" 	" Disable AutoComplPop.
-" 	let g:acp_enableAtStartup = 0
-" 	" Use neocomplcache.
-" 	let g:neocomplcache_enable_at_startup = 1
-" 	" Use smartcase.
-" 	let g:neocomplcache_enable_smart_case = 1
-" 	" Set minimum syntax keyword length.
-" 	let g:neocomplcache_min_syntax_length = 3
-" 	let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-" end
-" 
-" " ---------- monster.vim ----------
-" " Use neocomplete.vim
-" let g:neocomplete#sources#omni#input_patterns = {
-"   \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-"   \}
-" 
-" let g:neocomplcache#sources#omni#input_patterns = {
-"   \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-"   \}
-" 
-" 
-" " ---------- figitive ----------
-" NeoBundle 'tpope/vim-fugitive'
-" 
-" 
-" " ---------- lightline ----------
-" NeoBundle 'itchyny/lightline.vim'
-" 
-" let g:lightline = {
-" 	\ 'colorscheme': 'solarized',
-" 	\ 'active': {
-" 	\   'left': [ [ 'mode', 'paste' ],
-" 	\             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-" 	\ },
-" 	\ 'component': {
-" 	\   'readonly': '%{&filetype=="help"?"":&readonly?"X":""}',
-" 	\   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-" 	\   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-" 	\ },
-" 	\ 'component_visible_condition': {
-" 	\   'readonly': '(&filetype!="help"&& &readonly)',
-" 	\   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-" 	\   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-" 	\ },
-" 	\ }
-" 
-" 
-" call neobundle#end()
-" 
-" filetype plugin indent on
-" 
-" " プラグインがインストールされているかチェック
-" NeoBundleCheck
-" 
-" if !has('vim_starting')
-" 	" .vimrcを読み込み直した時のための設定
-" 	call neobundle#call_hook('on_source')
-" endif
 
 "----------------------------------------
 " システム設定
@@ -390,77 +281,6 @@ augroup vimrcEx
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line('$') | exe "normal! g`\"" | endif
 augroup END
 
-"" """"""""""""""""""""""""""""""
-"" " 挿入モード時、ステータスラインのカラー変更
-"" """"""""""""""""""""""""""""""
-"" let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=bold ctermfg=blue ctermbg=yellow cterm=none'
-"" 
-"" if has('syntax')
-""   augroup InsertHook
-""     autocmd!
-""     autocmd InsertEnter * call s:StatusLine('Enter')
-""     autocmd InsertLeave * call s:StatusLine('Leave')
-""   augroup END
-"" endif
-"" " if has('unix') && !has('gui_running')
-"" "   " ESCですぐに反映されない対策
-"" "   inoremap <silent> <ESC> <ESC>
-"" " endif
-"" 
-"" let s:slhlcmd = ''
-"" function! s:StatusLine(mode)
-""   if a:mode == 'Enter'
-""     silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-""     silent exec g:hi_insert
-""   else
-""     highlight clear StatusLine
-""     silent exec s:slhlcmd
-""     redraw
-""   endif
-"" endfunction
-"" 
-"" function! s:GetHighlight(hi)
-""   redir => hl
-""   exec 'highlight '.a:hi
-""   redir END
-""   let hl = substitute(hl, '[\r\n]', '', 'g')
-""   let hl = substitute(hl, 'xxx', '', '')
-""   return hl
-"" endfunction
-"" 
-"" """"""""""""""""""""""""""""""
-"" " 全角スペースを表示
-"" """"""""""""""""""""""""""""""
-"" " コメント以外で全角スペースを指定しているので、scriptencodingと、
-"" " このファイルのエンコードが一致するよう注意！
-"" " 強調表示されない場合、ここでscriptencodingを指定するとうまくいく事があります。
-"" " scriptencoding cp932
-"" function! ZenkakuSpace()
-""   silent! let hi = s:GetHighlight('ZenkakuSpace')
-""   if hi =~ 'E411' || hi =~ 'cleared$'
-""     highlight ZenkakuSpace cterm=underline ctermfg=darkgrey gui=underline guifg=darkgrey
-""   endif
-"" endfunction
-"" if has('syntax')
-""   augroup ZenkakuSpace
-""     autocmd!
-""     autocmd ColorScheme       * call ZenkakuSpace()
-""     autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
-""   augroup END
-""   call ZenkakuSpace()
-"" endif
-
-""""""""""""""""""""""""""""""
-" grep,tagsのためカレントディレクトリをファイルと同じディレクトリに移動する
-""""""""""""""""""""""""""""""
-" if exists('+autochdir')
-"   "autochdirがある場合カレントディレクトリを移動
-"   set autochdir
-" else
-"   "autochdirが存在しないが、カレントディレクトリを移動したい場合
-"   au BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
-" endif
-
 "----------------------------------------
 " 各種プラグイン設定
 "----------------------------------------
@@ -468,5 +288,6 @@ augroup END
 "----------------------------------------
 " 一時設定
 "----------------------------------------
-"set cursorline
+" カーソルラインをハイライト
+set cursorline
 
