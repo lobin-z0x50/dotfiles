@@ -1,0 +1,20 @@
+export EDITOR=nvim
+
+alias ls='ls -F'
+alias vi=nvim
+alias vim=nvim
+alias vimf='nvim +VimFilerExplorer'
+
+export HISTSIZE=10000
+
+export XDG_CONFIG_HOME=~/.config
+
+bindkey -e
+
+#SSH_AGENT_FILE="$HOME/.ssh-agent-info"
+#test -f $SSH_AGENT_FILE && source $SSH_AGENT_FILE
+#if ! ssh-add -l >& /dev/null ; then
+#  ssh-agent -t 20 > $SSH_AGENT_FILE
+#  source $SSH_AGENT_FILE
+#  ssh-add
+#fi

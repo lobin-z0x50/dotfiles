@@ -1,0 +1,7 @@
+_vim/bundle/
+/eshell/history
+_vim/.netrwhist
+_tmuxinator/*.yml
+.DS_Store
+_zsh/addhoc-completions/*
+
