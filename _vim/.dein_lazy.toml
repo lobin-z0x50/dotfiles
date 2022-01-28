@@ -17,3 +17,7 @@ on_ft = ['typescript']
 repo = 'wakatime/vim-wakatime'
 on_i = 1
 
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_i = 1
+
