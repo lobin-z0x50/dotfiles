@@ -19,4 +19,5 @@
 	rebasea = rebase --autostash
 	rebaser = pull --rebase --autostash origin
 	pushf = push --force-with-lease
+	pushu = push -u
 
