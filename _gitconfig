@@ -15,9 +15,11 @@
 	trustExitCode = true
 [alias]
 	br = branch --sort=-authordate --format=\"%(align:60)%(refname:short)%(end) %(authordate:short) %(subject)\"
+	brv = branch -vv
 	logs = log --stat --graph
 	rebasea = rebase --autostash
 	rebaser = pull --rebase --autostash origin
 	pushf = push --force-with-lease
 	pushu = push -u
+	pushh = push -u origin HEAD
 
