@@ -39,6 +39,9 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'wakatime/vim-wakatime'
+
+[[plugins]]
 repo = 'Shougo/neomru.vim'
 
 [[plugins]]
@@ -62,5 +65,32 @@ hook_add = '''
   nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
   nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
   nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+
+  " Ctrl+p でファイル検索を起動(CtrlP.vim風)
+  " http://blog.sasaplus1.com/2015/03/29/01/
+  nmap <expr><C-p> ":<C-u>execute \
+      \ 'Unite'
+      \ '-start-insert'
+      \ 'file:'.fnameescape(expand('%:p:h'))
+      \ (isdirectory(getcwd().'/.git') ?
+      \      'file_rec/git:--cached:--others:--exclude-standard' :
+      \      'file_rec/async')
+      \ <CR>"
+
+  " 検索対象外とするパターンを設定し、ファイル検索を高速化
+  let s:unite_ignore_file_rec_patterns=
+      \ ''
+      \ .'vendor/bundle\|.bundle/\|\.sass-cache/\|'
+      \ .'node_modules/\|bower_components/\|'
+      \ .'\.\(bmp\|gif\|jpe\?g\|png\|webp\|ai\|psd\)"\?$'
+  call unite#custom#source(
+      \ 'file_rec/async,file_rec/git',
+      \ 'ignore_pattern',
+      \ s:unite_ignore_file_rec_patterns)
 '''
 
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'machakann/vim-swap'

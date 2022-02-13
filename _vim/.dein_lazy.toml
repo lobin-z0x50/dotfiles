@@ -13,11 +13,3 @@ repo = 'delphinus35/typescript-vim'
 rev  = 'colorize-template-strings'
 on_ft = ['typescript']
 
-[[plugins]]
-repo = 'wakatime/vim-wakatime'
-on_i = 1
-
-[[plugins]]
-repo = 'tpope/vim-surround'
-on_i = 1
-
