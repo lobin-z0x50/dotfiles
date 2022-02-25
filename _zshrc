@@ -18,3 +18,7 @@ bindkey -e
 #  source $SSH_AGENT_FILE
 #  ssh-add
 #fi
+
+# Ctrl+S がシェルロックに割り当てられているので解除
+stty stop undef
+
