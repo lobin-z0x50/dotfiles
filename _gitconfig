@@ -14,12 +14,17 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [alias]
+	c = checkout
+	co = checkout --ours
+	ct = checkout --theirs
 	br = branch --sort=-authordate --format=\"%(align:60)%(refname:short)%(end) %(authordate:short) %(subject)\"
 	brv = branch -vv
 	logs = log --stat --graph
-	rebasea = rebase --autostash
-	rebaser = pull --rebase --autostash origin
+	ra = rebase --autostash
+	rr = pull --rebase --autostash origin
 	pushf = push --force-with-lease
 	pushu = push -u
 	pushh = push -u origin HEAD
 
+[push]
+	default = current
