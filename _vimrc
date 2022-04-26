@@ -145,6 +145,8 @@ endif
 set showmatch matchtime=1
 " タブを設定
 set ts=4 sw=4 sts=4
+" タブを空白文字で入力する
+set expandtab
 " 自動的にインデントする
 set autoindent
 " Cインデントの設定
