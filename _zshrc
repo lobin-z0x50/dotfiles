@@ -6,7 +6,7 @@ alias vim=nvim
 alias vimf='nvim +VimFilerExplorer'
 
 # ssh config からホスト定義を一覧表示し、1件選択して ssh 接続する
-alias sshl='ssh `grep "^Host" ~/.ssh/config| sort |peco| head -n1|awk "{print \$2}"`'
+alias sshl='ssh `grep "^Host" ~/.ssh/config| sort |peco| head -n1|awk "{print \\$2}"`'
 
 # git ブランチを一覧表示し、1件選択して checkout する
 alias gitbr='git br | peco | awk "{print \$1}" | xargs git c'
