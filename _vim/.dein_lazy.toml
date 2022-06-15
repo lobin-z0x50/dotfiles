@@ -8,8 +8,33 @@ repo = 'Shougo/deoplete.nvim'
 if = 'has("nvim")'
 on_i = 1
 
+# Toml syntax
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+
+# Markdown
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = ['markdown']
+
+# *css
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+on_ft = ['css','scss','sass']
+
+[[plugins]]
+repo = 'cakebaker/scss-syntax.vim'
+on_ft = ['css','scss','sass']
+
+# TypeScript syntax
 [[plugins]]
 repo = 'delphinus35/typescript-vim'
 rev  = 'colorize-template-strings'
 on_ft = ['typescript']
+
+# Vue
+[[plugins]]
+repo = 'posva/vim-vue'
+on_ft = ['vue']
 
