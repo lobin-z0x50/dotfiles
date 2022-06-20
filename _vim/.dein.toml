@@ -1,20 +1,20 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-[[plugins]]
-repo = 'Shougo/vimproc.vim'
-hook_post_update = '''
-  if has('win32')
-    let cmd = 'tools\\update-dll-mingw'
-  elseif has('win32unix') " for Cygwin
-    let cmd = 'make -f make_cygwin.mak'
-  elseif executable('gmake')
-    let cmd = 'gmake'
-  else
-    let cmd = 'make'
-  endif
-  let g:dein#plugin.build = cmd
-'''
+# [[plugins]]
+# repo = 'Shougo/vimproc.vim'
+# hook_post_update = '''
+#   if has('win32')
+#     let cmd = 'tools\\update-dll-mingw'
+#   elseif has('win32unix') " for Cygwin
+#     let cmd = 'make -f make_cygwin.mak'
+#   elseif executable('gmake')
+#     let cmd = 'gmake'
+#   else
+#     let cmd = 'make'
+#   endif
+#   let g:dein#plugin.build = cmd
+# '''
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -41,56 +41,188 @@ hook_add = '''
 [[plugins]]
 repo = 'wakatime/vim-wakatime'
 
-[[plugins]]
-repo = 'Shougo/neomru.vim'
+# [[plugins]]
+# repo = 'Shougo/neomru.vim'
 
-[[plugins]]
-repo = 'Shougo/vimfiler.vim'
-depends = 'neomru.vim'
-hook_add = '''
-  " VimFilerを :e . で起動させる
-  let g:vimfiler_as_default_explorer = 1
-  " セーフモードを解除
-  let g:vimfiler_safe_mode_by_default = 0
-'''
+# [[plugins]]
+# repo = 'Shougo/vimfiler.vim'
+# rev = 'ver.4.2'
+# depends = 'neomru.vim'
+# hook_add = '''
+#   " VimFilerを :e . で起動させる
+#   let g:vimfiler_as_default_explorer = 1
+#   " セーフモードを解除
+#   let g:vimfiler_safe_mode_by_default = 0
+# '''
 
-[[plugins]]
-repo = 'Shougo/unite.vim'
-depends = 'neomru.vim'
-hook_add = '''
-  let g:unite_source_history_yank_enable =1
-  let g:unite_source_file_mru_limit = 200
-  nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
-  nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-  nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-  nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
-  nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
-
-  " Ctrl+p でファイル検索を起動(CtrlP.vim風)
-  " http://blog.sasaplus1.com/2015/03/29/01/
-  nmap <expr><C-p> ":<C-u>execute \
-      \ 'Unite'
-      \ '-start-insert'
-      \ 'file:'.fnameescape(expand('%:p:h'))
-      \ (isdirectory(getcwd().'/.git') ?
-      \      'file_rec/git:--cached:--others:--exclude-standard' :
-      \      'file_rec/async')
-      \ <CR>"
-
-  " 検索対象外とするパターンを設定し、ファイル検索を高速化
-  let s:unite_ignore_file_rec_patterns=
-      \ ''
-      \ .'vendor/bundle\|.bundle/\|\.sass-cache/\|'
-      \ .'node_modules/\|bower_components/\|'
-      \ .'\.\(bmp\|gif\|jpe\?g\|png\|webp\|ai\|psd\)"\?$'
-  call unite#custom#source(
-      \ 'file_rec/async,file_rec/git',
-      \ 'ignore_pattern',
-      \ s:unite_ignore_file_rec_patterns)
-'''
+# [[plugins]]
+# repo = 'Shougo/unite.vim'
+# depends = 'neomru.vim'
+# hook_add = '''
+#   let g:unite_source_history_yank_enable =1
+#   let g:unite_source_file_mru_limit = 200
+#   nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+#   nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+#   nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+#   nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+#   nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+# 
+#   " Ctrl+p でファイル検索を起動(CtrlP.vim風)
+#   " http://blog.sasaplus1.com/2015/03/29/01/
+#   nmap <expr><C-p> ":<C-u>execute \
+#       \ 'Unite'
+#       \ '-start-insert'
+#       \ 'file:'.fnameescape(expand('%:p:h'))
+#       \ (isdirectory(getcwd().'/.git') ?
+#       \      'file_rec/git:--cached:--others:--exclude-standard' :
+#       \      'file_rec/async')
+#       \ <CR>"
+# 
+#   " 検索対象外とするパターンを設定し、ファイル検索を高速化
+#   let s:unite_ignore_file_rec_patterns=
+#       \ ''
+#       \ .'vendor/bundle\|.bundle/\|\.sass-cache/\|'
+#       \ .'node_modules/\|bower_components/\|'
+#       \ .'\.\(bmp\|gif\|jpe\?g\|png\|webp\|ai\|psd\)"\?$'
+#   call unite#custom#source(
+#       \ 'file_rec/async,file_rec/git',
+#       \ 'ignore_pattern',
+#       \ s:unite_ignore_file_rec_patterns)
+# '''
 
 [[plugins]]
 repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'machakann/vim-swap'
+
+#[[plugins]]
+#repo = 'powerman/vim-plugin-AnsiEsc'
+
+
+# deno環境 for ddc, ddu, and other dd*
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+# ポップアップウィンドウを表示するプラグイン
+[[plugins]]
+repo = 'Shougo/pum.vim'
+
+# ----- Fazy Finder ddu "Dark deno-powered UI" -----
+
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+# TODO: ui のカスタマイズしたい！
+hook_add = '''
+  call ddu#custom#patch_global({
+    \   'ui': 'ff',
+    \   'sources': [{'name': 'file_rec', 'params': {'ignoredDirectories': ['.git', 'node_modules', 'vendor']}},
+    \      {'name': 'mr'},
+    \      {'name': 'register'},
+    \      {'name': 'file', 'params':{}},
+    \      {'name': 'colorscheme'},
+    \      {'name': 'buffer'}],
+    \   'sourceOptions': {
+    \     '_': {
+    \       'matchers': ['matcher_substring'],
+    \     },
+    \   },
+    \   'kindOptions': {
+    \     'file': {
+    \       'defaultAction': 'open',
+    \     },
+    \     'colorscheme': {
+    \       'defaultAction': 'set',
+    \     },
+    \   },
+    \   'uiParams': {
+    \      'ff': {
+    \         'startFilter': v:false,
+    \         'split': 'floating',
+    \      },
+    \   },
+    \   'filterParams': {
+    \      'matcher_substring': {
+    \          'highlightMatched': 'Search',
+    \      },
+    \   },
+    \ })
+
+  autocmd FileType ddu-ff call s:ddu_my_settings()
+  function! s:ddu_my_settings() abort
+    nnoremap <buffer><silent> <CR>
+          \ <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+    nnoremap <buffer><silent> <Space>
+          \ <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+    nnoremap <buffer><silent> i
+          \ <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+    nnoremap <buffer><silent> q
+          \ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+  endfunction
+
+  autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
+  function! s:ddu_filter_my_settings() abort
+    inoremap <buffer><silent> <CR>
+    \ <Esc><Cmd>close<CR>
+    nnoremap <buffer><silent> <CR>
+    \ <Cmd>close<CR>
+    nnoremap <buffer><silent> q
+    \ <Cmd>close<CR>
+  endfunction
+
+  "ddu keymapping.
+  nnoremap <SID>[ug] <Nop>
+  nmap ,u <SID>[ug]
+
+  nnoremap <silent> <SID>[ug]m :<C-u>Ddu mr<CR>
+  nnoremap <silent> <SID>[ug]u :<C-u>Ddu mr<CR>
+  nnoremap <silent> <SID>[ug]b :<C-u>Ddu buffer<CR>
+  nnoremap <silent> <SID>[ug]r :<C-u>Ddu register<CR>
+  nnoremap <silent> <SID>[ug]n :<C-u>Ddu file -source-param-new -volatile<CR>
+  nnoremap <silent> <SID>[ug]f :<C-u>Ddu file_rec<CR>
+
+  nmap <silent> ;g <Cmd>call ddu#start({
+    \   'name': 'grep',
+    \   'sources':[
+    \     {'name': 'rg', 'params': {'input': expand('<cword>')}}
+    \   ],
+    \ })<CR>
+'''
+
+[[plugins]]
+repo='Shougo/ddu-ui-ff'
+[[plugins]]
+repo='Shougo/ddu-source-file_rec'
+[[plugins]]
+repo='Shougo/ddu-source-file'
+[[plugins]]
+repo='shun/ddu-source-buffer'
+[[plugins]]
+repo='Shougo/ddu-source-register'
+[[plugins]]
+repo='kuuote/ddu-source-mr'
+[[plugins]]
+repo='kuuote/ddu-source-mr'
+[[plugins]]
+repo='4513ECHO/ddu-source-colorscheme'
+[[plugins]]
+repo='Shougo/ddu-filter-matcher_substring'
+[[plugins]]
+repo='Shougo/ddu-kind-file'
+[[plugins]]
+repo='Shougo/ddu-commands.vim'
+
+
+# ----- Language Server Protocol -----
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+hook_add = '''
+  " Show diagnostics message to status line
+  let g:lsp_diagnostics_echo_cursor = 1
+'''
+
+
