@@ -31,3 +31,12 @@ bindkey -e
 # Ctrl+S がシェルロックに割り当てられているので解除
 stty stop undef
 
+# ^R の履歴検索を peco 対応にする
+# https://qiita.com/shepabashi/items/f2bc2be37a31df49bca5
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
