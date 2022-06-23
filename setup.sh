@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DOT_FILES=(
+  .zsh
   .zshrc
   .tmux.conf
   .gvimrc
@@ -13,13 +14,19 @@ DOT_FILES=(
 
 for file in ${DOT_FILES[@]}
 do
-  src_file=$(echo ${file} | sed 's/^\./_/')
-  if [ ! -L $HOME/$file -a -f $HOME/$file ]; then
-    echo "WARN: found no symlink file: $HOME/$file. rename to $HOME/${file}_"
-    mv $HOME/$file $HOME/${file}_
-  fi
+    src_file=$(echo ${file} | sed 's/^\./_/')
+    if [ ! -L $HOME/$file -a -f $HOME/$file ]; then
+        echo "WARN: found symlink file: $HOME/$file. can i rename to $HOME/${file}_ ?"
+        read -n1 -p "WARN: found symlink file: $HOME/$file. can i rename to $HOME/${file}_ ? [y/N]" KEY_IN
+        echo
+        if [ "$KEY_IN" != "Y" -a "$KEY_IN" != "y" ]; then
+            continue
+        fi
+        mv $HOME/$file $HOME/${file}_
+    fi
 
-  ln -snf $HOME/dotfiles/$src_file $HOME/$file
+    ln -snf $HOME/dotfiles/$src_file $HOME/$file
+    echo symlink created: $HOME/$file
 done
 
 # neovimとvimの共存用設定
