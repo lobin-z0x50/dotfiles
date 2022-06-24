@@ -7,6 +7,7 @@ DOT_FILES=(
   .gvimrc
   .vimrc
   .vim
+  .ideavimrc
   .tmuxinator
   .gitconfig
   .pryrc
