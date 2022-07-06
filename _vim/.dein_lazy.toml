@@ -83,7 +83,7 @@ hook_source = '''
 
 # カーソル周辺の既出単語を補完する ddc source
 [[plugins]]
-repo = 'Shougo/ddc-around.vim'
+repo = 'Shougo/ddc-around'
 on_source = 'ddc.vim'
 
 # ファイル名を補完する ddc source
