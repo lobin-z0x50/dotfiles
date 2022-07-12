@@ -99,6 +99,13 @@ repo = 'machakann/vim-swap'
 #[[plugins]]
 #repo = 'powerman/vim-plugin-AnsiEsc'
 
+# choose plugin
+[[plugins]]
+repo = 't9md/vim-choosewin'
+hook_add = '''
+  let g:choosewin_overlay_enabled = 1
+  let g:choosewin_overlay_clear_multibyte = 1
+'''
 
 # deno環境 for ddc, ddu, and other dd*
 [[plugins]]
@@ -318,17 +325,23 @@ hook_add = '''
 	function! s:defx_my_settings() abort
 	  " Define mappings
 	  nnoremap <silent><buffer><expr> <CR>
-	  \ defx#do_action('drop')
+    \ defx#is_directory() ?
+    \ defx#do_action('open_tree', 'toggle') :
+	  \ defx#do_action('open', 'choose')
+	  nnoremap <silent><buffer><expr> <BS>
+	  \ defx#do_action('cd', ['..'])
+	  nnoremap <silent><buffer><expr> ~
+	  \ defx#do_action('cd')
 	  nnoremap <silent><buffer><expr> c
 	  \ defx#do_action('copy')
 	  nnoremap <silent><buffer><expr> m
 	  \ defx#do_action('move')
 	  nnoremap <silent><buffer><expr> p
 	  \ defx#do_action('paste')
-	  nnoremap <silent><buffer><expr> l
-	  \ defx#do_action('drop')
     ""nnoremap <silent><buffer><expr> t
     ""  \ defx#do_action('open','tabnew')
+	  nnoremap <silent><buffer><expr> s
+	  \ defx#do_action('open', 'split')
 	  nnoremap <silent><buffer><expr> E
 	  \ defx#do_action('open', 'vsplit')
 	  nnoremap <silent><buffer><expr> P
@@ -360,10 +373,6 @@ hook_add = '''
 	  \ defx#do_action('toggle_ignored_files')
 	  nnoremap <silent><buffer><expr> ;
 	  \ defx#do_action('repeat')
-	  nnoremap <silent><buffer><expr> h
-	  \ defx#do_action('cd', ['..'])
-	  nnoremap <silent><buffer><expr> ~
-	  \ defx#do_action('cd')
 	  nnoremap <silent><buffer><expr> q
 	  \ defx#do_action('quit')
 	  nnoremap <silent><buffer><expr> <Space>
