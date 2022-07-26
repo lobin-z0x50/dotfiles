@@ -307,6 +307,7 @@ depends = ['ddu.vim']
 
 
 # ----- defx Filer -----
+# https://github.com/Shougo/defx.nvim/blob/master/doc/defx.txt
 # https://qiita.com/arks22/items/9688ec7f4cb43444e9d9
 [[plugins]]
 repo = 'Shougo/defx.nvim'
@@ -328,6 +329,10 @@ hook_add = '''
     \ defx#is_directory() ?
     \ defx#do_action('open_tree', 'toggle') :
 	  \ defx#do_action('open', 'choose')
+	  nnoremap <silent><buffer><expr> o
+    \ defx#is_directory() ?
+    \ defx#do_action('open_directory') :
+	  \ defx#do_action('open', 'choose')
 	  nnoremap <silent><buffer><expr> <BS>
 	  \ defx#do_action('cd', ['..'])
 	  nnoremap <silent><buffer><expr> ~
@@ -338,8 +343,6 @@ hook_add = '''
 	  \ defx#do_action('move')
 	  nnoremap <silent><buffer><expr> p
 	  \ defx#do_action('paste')
-    ""nnoremap <silent><buffer><expr> t
-    ""  \ defx#do_action('open','tabnew')
 	  nnoremap <silent><buffer><expr> s
 	  \ defx#do_action('open', 'split')
 	  nnoremap <silent><buffer><expr> E
@@ -348,6 +351,8 @@ hook_add = '''
 	  \ defx#do_action('preview')
 	  nnoremap <silent><buffer><expr> t
 	  \ defx#do_action('open_tree', 'toggle')
+	  nnoremap <silent><buffer><expr> h
+	  \ defx#do_action('close_tree')
 	  nnoremap <silent><buffer><expr> K
 	  \ defx#do_action('new_directory')
 	  nnoremap <silent><buffer><expr> N
