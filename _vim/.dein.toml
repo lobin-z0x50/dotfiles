@@ -313,11 +313,26 @@ repo = 'ryanoasis/vim-devicons'
 [[plugins]]
 repo = 'kristijanhusak/defx-icons'
 
+[[plugins]]
+repo = 'kristijanhusak/defx-git'
+hook_add = '''
+  call defx#custom#column('git', 'indicators', {
+      \ 'Modified'  : '✹',
+      \ 'Staged'    : '✚',
+      \ 'Untracked' : '✭',
+      \ 'Renamed'   : '➜',
+      \ 'Unmerged'  : '═',
+      \ 'Ignored'   : '☒',
+      \ 'Deleted'   : '✖',
+      \ 'Unknown'   : '?'
+      \ })
+'''
+
 # https://github.com/Shougo/defx.nvim/blob/master/doc/defx.txt
 # https://qiita.com/arks22/items/9688ec7f4cb43444e9d9
 [[plugins]]
 repo = 'Shougo/defx.nvim'
-depends = ['vim-devicons', 'defx-icons']
+depends = ['vim-devicons', 'defx-icons', 'defx-git']
 hook_add = '''
   call defx#custom#option('_', {
       \ 'winwidth': 40,
@@ -327,9 +342,9 @@ hook_add = '''
       \ 'buffer_name': 'exlorer',
       \ 'toggle': 1,
       \ 'resume': 1,
-      \ 'columns': 'indent:icons:filename:mark',
+      \ 'columns': 'git:indent:icons:filename:mark',
       \ })
- 
+
 	autocmd FileType defx call s:defx_my_settings()
 	function! s:defx_my_settings() abort
 	  " Define mappings
