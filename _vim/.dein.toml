@@ -307,10 +307,17 @@ depends = ['ddu.vim']
 
 
 # ----- defx Filer -----
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+repo = 'kristijanhusak/defx-icons'
+
 # https://github.com/Shougo/defx.nvim/blob/master/doc/defx.txt
 # https://qiita.com/arks22/items/9688ec7f4cb43444e9d9
 [[plugins]]
 repo = 'Shougo/defx.nvim'
+depends = ['vim-devicons', 'defx-icons']
 hook_add = '''
   call defx#custom#option('_', {
       \ 'winwidth': 40,
@@ -320,6 +327,7 @@ hook_add = '''
       \ 'buffer_name': 'exlorer',
       \ 'toggle': 1,
       \ 'resume': 1,
+      \ 'columns': 'indent:icons:filename:mark',
       \ })
  
 	autocmd FileType defx call s:defx_my_settings()
@@ -400,6 +408,11 @@ hook_add = '''
   "autocmd VimEnter * execute 'Defx'
   " \f で Defx を開く
   nnoremap <silent> <Leader>f :<C-u> Defx <CR>
+
+  " 外部でファイル更新された場合を考慮し、バッファ切替時に再描画させる
+  " https://qiita.com/arks22/items/9688ec7f4cb43444e9d9
+  autocmd BufWritePost * call defx#redraw()
+  autocmd BufEnter * call defx#redraw()
 '''
 
 
