@@ -335,14 +335,14 @@ repo = 'Shougo/defx.nvim'
 depends = ['vim-devicons', 'defx-icons', 'defx-git']
 hook_add = '''
   call defx#custom#option('_', {
-      \ 'winwidth': 40,
+      \ 'winwidth': 48,
       \ 'split': 'vertical',
       \ 'direction': 'topleft',
       \ 'show_ignored_files': 0,
       \ 'buffer_name': 'exlorer',
       \ 'toggle': 1,
       \ 'resume': 1,
-      \ 'columns': 'git:indent:icons:filename:mark',
+      \ 'columns': 'mark:indent:icons:filename:git',
       \ })
 
 	autocmd FileType defx call s:defx_my_settings()
