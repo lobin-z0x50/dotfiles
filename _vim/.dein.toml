@@ -204,12 +204,13 @@ hook_add = '''
   nnoremap <silent> <SID>[ug]n :<C-u>Ddu file -source-param-new -volatile<CR>
   nnoremap <silent> <SID>[ug]f :<C-u>Ddu file_rec<CR>
 
-  nmap <silent> ;g <Cmd>call ddu#start({
-    \   'name': 'grep',
-    \   'sources':[
-    \     {'name': 'rg', 'params': {'input': expand('<cword>')}}
-    \   ],
-    \ })<CR>
+" NOTE: セミコロン押下時のカーソル移動が5秒ぐらい遅れるので、以下の設定は無効化
+"  nmap <silent> ;g <Cmd>call ddu#start({
+"    \   'name': 'grep',
+"    \   'sources':[
+"    \     {'name': 'rg', 'params': {'input': expand('<cword>')}}
+"    \   ],
+"    \ })<CR>
 '''
 
 [[plugins]]
