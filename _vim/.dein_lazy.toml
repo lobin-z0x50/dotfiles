@@ -39,35 +39,38 @@ repo = 'posva/vim-vue'
 on_ft = ['vue']
 
 
-# ----- ddc "Dark deno-powered completion" -----
+
+# ----- ddc "Dark deno-powered completion" 自動補完プラグイン -----
 
 [[plugins]]
 repo = 'Shougo/ddc.vim'
 on_event = 'InsertEnter'
-depends = ['denops.vim']
+depends = ['denops.vim', 'ddc-ui-native']
 hook_source = '''
+  call ddc#custom#patch_global('ui', 'native')
+
   call ddc#custom#patch_global('sources', ['around', 'vsnip'])
-  call ddc#custom#patch_global('sourceOptions', {
-      \ '_': {
-      \ 'matchers': ['matcher_head'],
-      \ 'sorters': ['sorter_rank'],
-      \ 'converters': ['converter_remove_overlap'],
-      \ },
-      \ 'around': {'mark': 'A'},
+  call ddc#custom#patch_global('sourceOptions', #{
+      \   _: #{
+      \     matchers: ['matcher_head'],
+      \     sorters: ['sorter_rank'],
+      \     converters: ['converter_remove_overlap'],
+      \   },
+      \   'around': {'mark': 'A'},
       \ })
 
   " Change source options
-  call ddc#custom#patch_global('sourceParams', {
-      \ 'around': {'maxSize': 500},
+  call ddc#custom#patch_global('sourceParams', #{
+      \   around: {'maxSize': 500},
       \ })
 
   " Customize settings on a filetype
   call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
-  call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
-      \ 'clangd': {'mark': 'C'},
+  call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', #{
+      \   clangd: {'mark': 'C'},
       \ })
-  call ddc#custom#patch_filetype('markdown', 'sourceParams', {
-      \ 'around': {'maxSize': 100},
+  call ddc#custom#patch_filetype('markdown', 'sourceParams', #{
+      \   around: {'maxSize': 100},
       \ })
 
   " <TAB>: completion.
@@ -81,9 +84,13 @@ hook_source = '''
   call ddc#enable()
 '''
 
+[[plugins]]
+repo = 'Shougo/ddc-ui-native'
+on_source = 'ddc.vim'
+
 # カーソル周辺の既出単語を補完する ddc source
 [[plugins]]
-repo = 'Shougo/ddc-around'
+repo = 'Shougo/ddc-source-around'
 on_source = 'ddc.vim'
 
 # ファイル名を補完する ddc source
