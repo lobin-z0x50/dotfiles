@@ -5,14 +5,16 @@ alias vi=nvim
 alias vim=nvim
 alias vimf='nvim +Defx'
 
+# zstd within tar
+alias tarc='tar --use-compress-program=zstd -cvf'
+alias tart='tar --use-compress-program=unzstd -tvf'
+alias tarx='tar --use-compress-program=unzstd -xvf'
+
 # ssh config からホスト定義を一覧表示し、1件選択して ssh 接続する
 alias sshl='ssh `grep "^Host" ~/.ssh/config| sort |peco| head -n1|awk "{print \\$2}"`'
 
 # git ブランチを一覧表示し、1件選択して checkout する
 alias gitbr='git br | peco | awk "{print \$1}" | xargs git c'
-
-# Dockerイメージを一覧表示し、複数件選択して 削除する
-alias docker_rmi='docker images | peco | docker rmi `awk "{print \$3}"`'
 
 export HISTSIZE=10000
 
