@@ -122,50 +122,52 @@ repo = 'Shougo/ddu.vim'
 depends = ['denops.vim']
 # TODO: ui のカスタマイズしたい！
 hook_add = '''
-  call ddu#custom#patch_global({
-    \   'ui': 'ff',
-    \   'sources': [{'name': 'file_rec', 'params': {'ignoredDirectories': ['.git', 'node_modules', 'vendor']}},
-    \      {'name': 'mr'},
-    \      {'name': 'register'},
-    \      {'name': 'file', 'params':{}},
-    \      {'name': 'colorscheme'},
-    \      {'name': 'buffer'}],
-    \   'sourceOptions': {
-    \     '_': {
-    \       'matchers': ['matcher_substring'],
+  call ddu#custom#patch_global(#{
+    \   ui: 'ff',
+    \   sources: [
+    \      #{name: 'mr'},
+    \      #{name: 'register'},
+    \      #{name: 'file', params:{}},
+    \      #{name: 'file_rec', params: #{ignoredDirectories: ['.git', 'node_modules', 'vendor']}},
+    \      #{name: 'colorscheme'},
+    \      #{name: 'buffer'}
+    \   ],
+    \   sourceOptions: #{
+    \     _: #{
+    \       matchers: ['matcher_substring'],
     \     },
     \   },
-    \   'kindOptions': {
-    \     'file': {
-    \       'defaultAction': 'open',
+    \   kindOptions: #{
+    \     file: #{
+    \       defaultAction: 'open',
     \     },
-    \     'colorscheme': {
-    \       'defaultAction': 'set',
+    \     colorscheme: #{
+    \       defaultAction: 'set',
     \     },
     \   },
-    \   'uiParams': {
-    \      'ff': {
-    \         'startFilter': v:false,
-    \         'prompt': '> ',
-    \         'split': 'floating',
+    \   uiParams: #{
+    \      ff: #{
+    \         startFilter: v:false,
+    \         prompt: '> ',
+    \         split: 'floating',
     \      },
     \   },
-    \   'filterParams': {
-    \      'matcher_substring': {
-    \          'highlightMatched': 'Search',
+    \   filterParams: #{
+    \      matcher_substring: #{
+    \          highlightMatched: 'Search',
     \      },
     \   },
     \ })
 
   " grep  -- https://alpacat.com/blog/my-ddu-settings
-  call ddu#custom#patch_local('grep', {
-    \   'sourceParams' : {
-    \     'rg' : {
-    \       'args': ['--column', '--no-heading', '--color', 'never'],
+  call ddu#custom#patch_local('grep', #{
+    \   sourceParams : #{
+    \     rg: #{
+    \       args: ['--column', '--no-heading', '--color', 'never'],
     \     },
     \   },
-    \   'uiParams': {
-    \     'ff': {
+    \   uiParams: #{
+    \     ff: {
     \       'startFilter': v:false,
     \     }
     \   },
@@ -232,8 +234,11 @@ depends = ['ddu.vim']
 repo='shun/ddu-source-rg'
 depends = ['ddu.vim']
 [[plugins]]
-repo='kuuote/ddu-source-mr'
+repo='lambdalisue/mr.vim'
 depends = ['ddu.vim']
+[[plugins]]
+repo='kuuote/ddu-source-mr'
+depends = ['ddu.vim', 'mr.vim']
 [[plugins]]
 repo='4513ECHO/ddu-source-colorscheme'
 depends = ['ddu.vim']
