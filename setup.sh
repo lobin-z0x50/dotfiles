@@ -11,14 +11,15 @@ DOT_FILES=(
   .tmuxinator
   .gitconfig
   .pryrc
+  .wezterm.lua
 )
 
 for file in ${DOT_FILES[@]}
 do
     src_file=$(echo ${file} | sed 's/^\./_/')
     if [ ! -L $HOME/$file -a -f $HOME/$file ]; then
-        echo "WARN: found symlink file: $HOME/$file. can i rename to $HOME/${file}_ ?"
-        read -n1 -p "WARN: found symlink file: $HOME/$file. can i rename to $HOME/${file}_ ? [y/N]" KEY_IN
+        #echo "WARN: found symlink file: $HOME/$file. can i rename to $HOME/${file}_ ?"
+        read -n1 -p "WARN: found real file: '$HOME/$file'. can i rename to '$HOME/${file}_' ? [y/N]" KEY_IN
         echo
         if [ "$KEY_IN" != "Y" -a "$KEY_IN" != "y" ]; then
             continue
