@@ -20,6 +20,11 @@ export HISTSIZE=10000
 
 export XDG_CONFIG_HOME=~/.config
 
+# lessのデフォルトオプション
+# NOTE:  -R カラーコードを認識して色付け
+#        -i 検索時に大文字小文字無視
+export LESS="-Ri"
+
 bindkey -e
 
 #SSH_AGENT_FILE="$HOME/.ssh-agent-info"
@@ -64,3 +69,5 @@ GIT_PS1_SHOWUPSTREAM=auto
 setopt PROMPT_SUBST ; PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%s)")%f
 \$ '
 
+eval "$(rbenv init - zsh)"
+export PATH="/usr/local/sbin:$PATH"
