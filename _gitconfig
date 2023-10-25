@@ -25,6 +25,7 @@
 	pushf = push --force-with-lease
 	pushu = push -u
 	pushh = push -u origin HEAD
+    search-deploy-pr = "!f() { git log --oneline $1.. | grep -E '#\\d+'; }; f" # 第1引数現在デプロイされている最新のコミットID
 
 [push]
 	default = current
