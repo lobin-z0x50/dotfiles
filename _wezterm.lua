@@ -106,4 +106,7 @@ config.	font_rules = {
 -- フォントサイズの設定
 config.font_size = 15
 
+-- ダブルクリックで単語を選択するときの境界
+config.selection_word_boundary = " \t\n{}[]()\"'`,;:"
+
 return config
