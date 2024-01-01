@@ -35,7 +35,7 @@ do
 done
 
 # AstroNvim
-(cd ~/dotfiles; git submodule init)
+(cd ~/dotfiles; git submodule update -i)
 ln -sf ~/.config/nvim ~/dotfiles/AstroNvim
 
 # neovimとvimの共存用設定
