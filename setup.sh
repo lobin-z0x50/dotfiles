@@ -1,4 +1,7 @@
 #!/bin/bash
+# TODO: Rakefile で書き換えたい。
+
+set -eo pipefail
 
 DOT_FILES=(
   .zsh
@@ -31,6 +34,10 @@ do
     echo symlink created: $HOME/$file
 done
 
+# AstroNvim
+(cd ~/dotfiles; git submodule init)
+ln -sf ~/.config/nvim ~/dotfiles/AstroNvim
+
 # neovimとvimの共存用設定
 #mkdir -p ~/.config
 #ln -sf ~/.vimrc ~/.config/nvim/init.vim
@@ -38,3 +45,4 @@ done
 # neovimとvimの共存用設定
 mkdir -p ~/.config
 ln -sf ~/.vim ~/.config/nvim
+
