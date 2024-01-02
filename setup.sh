@@ -36,6 +36,16 @@ done
 
 # AstroNvim
 function config_astro_nvim() {
+    if [ -e ~/.config/nvim ]; then
+        return 0
+    fi
+
+    read -n1 -p "AstroNvim のコンフィグをインストールしますか？ [y/N]" KEY_IN
+    echo
+    if [ "$KEY_IN" != "Y" -a "$KEY_IN" != "y" ]; then
+        return 1
+    fi
+
     (cd ~/dotfiles; git submodule update -i)
     mkdir -p ~/.config
     ln -sf ~/dotfiles/AstroNvim ~/.config/nvim
@@ -45,6 +55,12 @@ function config_astro_nvim() {
 function install_nvim() {
     if which nvim; then
         return 0
+    fi
+
+    read -n1 -p "NVIM をインストールしますか？ [y/N]" KEY_IN
+    echo
+    if [ "$KEY_IN" != "Y" -a "$KEY_IN" != "y" ]; then
+        return 1
     fi
 
     echo "installing nvim (from universal app image)..."
