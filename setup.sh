@@ -35,14 +35,39 @@ do
 done
 
 # AstroNvim
-(cd ~/dotfiles; git submodule update -i)
-ln -sf ~/.config/nvim ~/dotfiles/AstroNvim
+function config_astro_nvim() {
+    (cd ~/dotfiles; git submodule update -i)
+    mkdir -p ~/.config
+    ln -sf ~/dotfiles/AstroNvim ~/.config/nvim
+    echo "config installed for AstroNvim in ~/.config/nvim"
+}
+
+function install_nvim() {
+    if which nvim; then
+        return 0
+    fi
+
+    echo "installing nvim (from universal app image)..."
+
+    # NVIM 最新版をインストール
+    # https://github.com/neovim/neovim/blob/master/INSTALL.md#appimage-universal-linux-package
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod +x nvim.appimage
+    if [ $1 = 'GLOBAL' ]; then
+        sudo mv ./nvim.appimage /usr/local/bin/
+        sudo ln -s /usr/local/bin/nvim.appimage /usr/bin/nvim
+    else
+        mkdir -p ~/bin
+        mv ./nvim.appimage ~/bin/nvim
+    fi
+    which nvim
+}
+
 
 # neovimとvimの共存用設定
 #mkdir -p ~/.config
-#ln -sf ~/.vimrc ~/.config/nvim/init.vim
+#ln -sf ~/.vim ~/.config/nvim
 
-# neovimとvimの共存用設定
-mkdir -p ~/.config
-ln -sf ~/.vim ~/.config/nvim
+install_nvim 'GLOBAL'
+config_astro_nvim
 
