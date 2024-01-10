@@ -9,12 +9,12 @@ my dotfiles
 
   ```sh
   cd ~
-  git clone git@github.com:lobin-x0z50/dotfiles.git
-  git submodule update -i
+  git clone git@github.com:lobin-z0x50/dotfiles.git
   ```
 
 2. setup links
 
   ```sh
-  sh setup.sh
+  cd dotfiles
+  bash ./setup.sh
   ```
