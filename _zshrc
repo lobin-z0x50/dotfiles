@@ -12,6 +12,7 @@ alias tarx='tar --use-compress-program=unzstd -xvf'
 
 # ssh config からホスト定義を一覧表示し、1件選択して ssh 接続する
 alias sshl='ssh `grep "^Host" ~/.ssh/config| sort |peco| head -n1|awk "{print \\$2}"`'
+alias ssh-mrp='eval "gcloud compute ssh $(peco < ~/.ssh/gcloud-hosts-mrp | cut -d# -f1)"'
 
 # git ブランチを一覧表示し、1件選択して checkout する
 alias gitbr='git br | peco | awk "{print \$1}" | xargs git c'
@@ -71,3 +72,7 @@ setopt PROMPT_SUBST ; PS1='%F{green}%n@%m%f: %F{cyan}%~%f %F{red}$(__git_ps1 "(%
 
 eval "$(rbenv init - zsh)"
 export PATH="/usr/local/sbin:$PATH"
+
+
+. "$HOME/.cargo/env"
+
