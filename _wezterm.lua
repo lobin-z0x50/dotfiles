@@ -1,3 +1,8 @@
+--
+-- WezTermの設定ファイル
+-- 公式リファレンス: https://wezterm.org/config/files.html
+--
+
 local wezterm = require 'wezterm'
 
 local config = {}
@@ -10,14 +15,49 @@ end
 config.color_scheme = 'MaterialDesignColors'
 
 -- 背景透過
-config.window_background_opacity = 0.90
+config.window_background_opacity = 0.85
+config.macos_window_background_blur = 12
 
+-- タブの設定
+config.show_new_tab_button_in_tab_bar = false  -- タブバーに新しいタブを作成するボタンを表示しない
+-- config.show_close_tab_button_in_tabs = false   -- タブバーにタブを閉じるボタンを表示しない
+
+-- -- タブの色、表示文字列を設定
+-- https://zenn.dev/mozumasu/articles/mozumasu-wezterm-customization
+-- wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+--   local background = "#515151"
+--   local foreground = "#FFFFFF"
+-- 
+--   if tab.is_active then
+--     background = "#ae8b2d"
+--     foreground = "#FFFFFF"
+--   end
+-- 
+--   local title = tab.active_pane.title
+--   -- title = "   " .. wezterm.truncate_right(title, max_width - 1) .. "   "
+-- 
+--   return {
+--     { Background = { Color = background } },
+--     { Foreground = { Color = foreground } },
+--    { Text = title },
+--   }
+-- end)
+
+-- position and size
+wezterm.on('gui-startup', function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {width=158, height=56})
+  window:gui_window():set_position(0,0)
+  window:set_inner_size(800, 1020)
+end)
 -- 最初からフルスクリーンで起動
 -- local mux = wezterm.mux
 -- wezterm.on("gui-startup", function(cmd)
 --     local tab, pane, window = mux.spawn_window(cmd or {})
 --     window:gui_window():toggle_fullscreen()
 -- end)
+
+-- リーダーキーを Ctrl+q に設定
+config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 2000 }
 
 -- ショートカットキー設定
 local act = wezterm.action
